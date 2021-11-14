@@ -88,6 +88,9 @@
     <FlyoutItem Title="Notes" Icon="icon_about.png">
         <ShellContent ContentTemplate="{DataTemplate local:MainNotesView}" Route="NotesPage" />
     </FlyoutItem>
+    <FlyoutItem Title="Edit Note" Icon="icon_about.png">
+        <ShellContent ContentTemplate="{DataTemplate local:EditNoteView}" Route="EditNote" />
+    </FlyoutItem>
 
 
     <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
