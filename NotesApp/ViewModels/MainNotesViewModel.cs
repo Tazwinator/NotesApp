@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using NotesApp.Models;
+using Xamarin.Forms;
 
 namespace NotesApp.ViewModels
 {
-    class MainNotesViewModel
+    class MainNotesViewModel : BindableObject
     {
         public MainNotesViewModel()
         {
@@ -18,9 +19,9 @@ namespace NotesApp.ViewModels
         private NotesCollection userNotes = new NotesCollection();
         public NotesCollection UserNotes { get { return userNotes; } }
 
-        public void DisplayNotes()
+        void DisplayNotes()
         {
-            userNotes.Add(new Note { hey = "Hello World" });
+            userNotes.Add(new Note { Content = "Hello World" });
         }
 
 

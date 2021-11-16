@@ -11,6 +11,7 @@ namespace NotesApp.Models
             
         }
 
-        public string hey { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
     }
 }

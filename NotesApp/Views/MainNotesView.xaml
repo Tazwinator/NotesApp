@@ -12,7 +12,7 @@
     <ListView ItemsSource="{x:Binding UserNotes}">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{x:Binding hey}" />
+                <TextCell Text="{x:Binding Content}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
