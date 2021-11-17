@@ -13,7 +13,7 @@
 
             <Button Command="{x:Binding SaveNote}"
                     Text="Click me!"/>
-            <Editor x:Name="NoteBox" Text="{x:Binding CurrentNoteText}"/>
+            <Editor Text="{x:Binding CurrentNoteText}"/>
 
         </StackLayout>
     </ScrollView>

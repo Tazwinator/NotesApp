@@ -4,17 +4,18 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
+  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"
+  IgnorableNamespaces="uap mp iot">
 
   <Identity
-    Name="0e5625fd-689a-4c75-86a4-83161732e4a0"
+    Name="Notes-App"
     Publisher="CN=624bcb3a-1e13-4cd8-99d4-a46e5ce5bcc0"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>NotesApp.UWP</DisplayName>
+    <DisplayName>NotesApp</DisplayName>
     <PublisherDisplayName>624bcb3a-1e13-4cd8-99d4-a46e5ce5bcc0</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -32,7 +33,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="NotesApp.UWP.App">
       <uap:VisualElements
-        DisplayName="NotesApp.UWP"
+        DisplayName="NotesApp"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="NotesApp.UWP"
@@ -45,6 +46,8 @@
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>

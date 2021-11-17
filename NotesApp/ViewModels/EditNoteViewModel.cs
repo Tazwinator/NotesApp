@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using NotesApp.Models;
+using NotesApp.Models.Files;
 using NotesApp.Views;
 
 namespace NotesApp.ViewModels
@@ -16,9 +17,9 @@ namespace NotesApp.ViewModels
         }
         public ICommand SaveNote { get; }
 
-        public NotesCollection UserNotes = new NotesCollection();
+        //public NotesCollection UserNotes = new NotesCollection();
 
-        public Note currentNote = new Note();
+        public static Note currentNote = new Note();
         public string CurrentNoteText
         {
             get => currentNote.Content;
@@ -31,19 +32,17 @@ namespace NotesApp.ViewModels
             }
         }
 
-
         void Save()
         {
-            // TODO - BigT my boy, I'm so happy right now I've just managed to do this.
-            // Off to go have a beer and play Halo. Now just make it so that it doesn't clog up in memory.
-            // Or if you don't need to, the next step would be saving the notes to a file or memory. Good lad ;)
-            string CurrentNoteTitle = CurrentNoteText.Substring(0, Math.Min(150, CurrentNoteText.Length));
-            UserNotes.Add(new Note { Content = CurrentNoteText, Title = CurrentNoteTitle });
+            string fileName = $"{currentNote.Content.Substring(0, Math.Min(20, currentNote.Content.Length))}.txt";
+            fileName.FullFilePath().CreateNoteFile(currentNote.Content);
+
+            /*UserNotes.Add(new Note { Content = CurrentNoteText, Title = CurrentNoteTitle });
             foreach (var note in UserNotes)
             {
                 System.Diagnostics.Debug.WriteLine(note.Content);
                 System.Diagnostics.Debug.WriteLine(note.Title);
-            }
+            }*/
 
 
         }
