@@ -12,8 +12,10 @@
         <StackLayout>
 
             <Button Command="{x:Binding SaveNote}"
-                    Text="Click me!"/>
-            <Editor Text="{x:Binding CurrentNoteText}"/>
+                    Text="Save"/>
+            <Button Command="{x:Binding DelNote}"
+                    Text="Delete"/>
+            <Editor Text="{x:Binding CurrentNoteContent}"/>
 
         </StackLayout>
     </ScrollView>

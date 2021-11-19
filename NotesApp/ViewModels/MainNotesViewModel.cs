@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using NotesApp.Models;
 using Xamarin.Forms;
+using NotesApp.Models;
+using NotesApp.Services;
 
 namespace NotesApp.ViewModels
 {
@@ -19,9 +20,14 @@ namespace NotesApp.ViewModels
         private NotesCollection userNotes = new NotesCollection();
         public NotesCollection UserNotes { get { return userNotes; } }
 
-        void DisplayNotes()
+        async void DisplayNotes()
         {
-            userNotes.Add(new Note { Content = "Hello World" });
+
+            var notes = await NoteStoreService.GetNotes();
+            foreach (var note in notes)
+            {
+                userNotes.Add(note);
+            }
         }
 
 
