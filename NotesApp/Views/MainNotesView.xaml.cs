@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using NotesApp.ViewModels;
+using NotesApp.Models;
 
 namespace NotesApp.Views
 {
@@ -15,6 +16,11 @@ namespace NotesApp.Views
         public MainNotesView()
         {
             InitializeComponent();
+        }
+
+        private void LoadNoteEditor(object sender, ItemTappedEventArgs e)
+        {
+            MainNotesViewModel.LoadNoteEditor(e.Item);
         }
     }
 }

@@ -8,13 +8,34 @@
     <ContentPage.BindingContext>
         <viewmodels:MainNotesViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Content>
 
-    <ListView ItemsSource="{x:Binding UserNotes}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{x:Binding Content}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+
+        <RefreshView Command="{x:Binding RefreshPage}">
+            <StackLayout>
+                <Button Command="{x:Binding RefreshPage}" Text="Refresh"/>
+                <Button Command="{x:Binding NewNote}" Text="New"/>
+                <ListView ItemsSource="{x:Binding UserNotes}" ItemTapped="LoadNoteEditor">
+                    <ListView.Header>
+                        <Label Text="Your Notes" />
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout>
+                                        <Label Text="{x:Binding Title}" />
+                                        <Label Text="{x:Binding Content}" />
+                                        <Label Text="{x:Binding Id}" />
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </RefreshView>
+    </ContentPage.Content>
+
 
 </ContentPage>

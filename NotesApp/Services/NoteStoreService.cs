@@ -49,11 +49,12 @@ namespace NotesApp.Services
             Console.Write("Note removed");
         }
 
-        public static async Task GetNote(int id)
+        public static async Task<Note> GetNote(int id)
         {
             await Init();
             var query = _db.Table<Note>().Where(x => x.Id == id);
-            await query.ToListAsync();
+            Note note = await query.FirstAsync();
+            return note;
         }
 
         public static async Task<IEnumerable<Note>> GetNotes()

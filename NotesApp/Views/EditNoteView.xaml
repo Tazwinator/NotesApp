@@ -11,11 +11,14 @@
     <ScrollView>
         <StackLayout>
 
+            <Button Command="{x:Binding BackBtn}"
+                    Text="Back"/>
             <Button Command="{x:Binding SaveNote}"
                     Text="Save"/>
             <Button Command="{x:Binding DelNote}"
                     Text="Delete"/>
-            <Editor Text="{x:Binding CurrentNoteContent}"/>
+            <Entry Text="{x:Binding CurrentNote.Title}"/>
+            <Editor Text="{x:Binding CurrentNote.Content}"/>
 
         </StackLayout>
     </ScrollView>
