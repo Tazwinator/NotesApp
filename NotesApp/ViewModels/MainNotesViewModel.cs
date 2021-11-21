@@ -47,7 +47,10 @@ namespace NotesApp.ViewModels
                 System.Diagnostics.Debug.Write(note.Content);
             }
         }
-
+        /// <summary>
+        /// Is called by the "ItemTapped" event
+        /// </summary>
+        /// <param name="item"></param>
         public async static void LoadNoteEditor(object item = null)
         {
             System.Diagnostics.Debug.Write(item);
@@ -61,6 +64,8 @@ namespace NotesApp.ViewModels
             
             System.Diagnostics.Debug.Write(note.Id);
         }
+
+
 
     }
 }

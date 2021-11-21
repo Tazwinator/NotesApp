@@ -30,16 +30,24 @@ namespace NotesApp.Services
             return;
         }
 
-        public static async Task AddNote(string noteText, string noteTitle)
+        public static async Task AddNote(string noteText, string noteTitle, int Id = 0)
         {
             await Init();
             var dbNote = new Note
             {
                 Content = noteText,
                 Title = noteTitle,
+                Id = Id
             };
-            await _db.InsertAsync(dbNote);
-            Console.Write("Note added");
+            if (Id == 0)
+            {
+                await _db.InsertAsync(dbNote);
+                Console.Write("Note added");
+                return;
+            }
+
+            await _db.UpdateAsync(dbNote);
+
         }
 
         public static async Task RemoveNote(int id)

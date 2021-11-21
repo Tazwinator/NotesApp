@@ -22,5 +22,19 @@ namespace NotesApp.Views
         {
             MainNotesViewModel.LoadNoteEditor(e.Item);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            InitializeComponent();
+
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            Navigation.PopAsync();
+        }
     }
 }

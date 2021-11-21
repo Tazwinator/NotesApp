@@ -35,6 +35,7 @@ namespace NotesApp.ViewModels
             {
                 currentNote.Content = value.Content;
                 currentNote.Title = value.Title;
+                currentNote.Id = value.Id;
                 OnPropertyChanged();
             }
         }
@@ -42,14 +43,15 @@ namespace NotesApp.ViewModels
         async void Save()
         {
             System.Diagnostics.Debug.WriteLine(CurrentNote.Content, CurrentNote.Title);
-            await NoteStoreService.AddNote(CurrentNote.Content, CurrentNote.Title);
-
+            await NoteStoreService.AddNote(CurrentNote.Content, CurrentNote.Title, CurrentNote.Id);
+            GoBack();
         }
 
-        void Delete()
+        private async void Delete()
         {
             System.Diagnostics.Debug.WriteLine(CurrentNote.Content, CurrentNote.Title);
-            //await NoteStoreService.;
+            await NoteStoreService.RemoveNote(CurrentNote.Id);
+            GoBack();
         }
 
         private async void GoBack()
