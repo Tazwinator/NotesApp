@@ -10,14 +10,22 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
 
-
         <RefreshView Command="{x:Binding RefreshPage}">
-            <StackLayout>
-                <Button Command="{x:Binding RefreshPage}" Text="Refresh"/>
-                <Button Command="{x:Binding NewNote}" Text="New"/>
-                <ListView ItemsSource="{x:Binding UserNotes}" ItemTapped="LoadNoteEditor">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{x:Binding RefreshPage}" Text="Refresh" Grid.Row="0" Grid.Column="0"/>
+                <Button Command="{x:Binding NewNote}" Text="New" Grid.Row="0" Grid.Column="1"/>
+                <ListView ItemsSource="{x:Binding UserNotes}" ItemTapped="LoadNoteEditor" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
                     <ListView.Header>
-                        <Label Text="Your Notes" />
+                        <Label Text="Your Notes:" FontSize="Micro"/>
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -33,7 +41,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
+            </Grid>
         </RefreshView>
     </ContentPage.Content>
 

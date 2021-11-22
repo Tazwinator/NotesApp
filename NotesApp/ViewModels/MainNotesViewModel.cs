@@ -8,6 +8,7 @@ using NotesApp.Services;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using NotesApp.Views;
+using Xamarin.Essentials;
 
 namespace NotesApp.ViewModels
 {
@@ -15,6 +16,8 @@ namespace NotesApp.ViewModels
     {
         public MainNotesViewModel()
         {
+            PermissionRequester();
+
             RefreshPage = new Command(Refresh);
             NewNote = new Command(LoadNoteEditor);
 
@@ -46,9 +49,11 @@ namespace NotesApp.ViewModels
                 UserNotes.Add(note);
                 System.Diagnostics.Debug.Write(note.Content);
             }
+
+
         }
         /// <summary>
-        /// Is called by the "ItemTapped" event
+        /// Is called by the "ItemTapped" event in the view code-behind
         /// </summary>
         /// <param name="item"></param>
         public async static void LoadNoteEditor(object item = null)
@@ -63,6 +68,17 @@ namespace NotesApp.ViewModels
             await Shell.Current.GoToAsync($"//EditNotePage?noteData={note.Id}");
             
             System.Diagnostics.Debug.Write(note.Id);
+        }
+
+        private async void PermissionRequester()
+        {
+            var storeWrite = await Permissions.RequestAsync<Permissions.StorageWrite>();
+            var storeRead = await Permissions.RequestAsync<Permissions.StorageRead>();
+            if (storeRead == PermissionStatus.Granted && storeWrite == PermissionStatus.Granted)
+            {
+                return;
+            }
+            PermissionRequester();
         }
 
 

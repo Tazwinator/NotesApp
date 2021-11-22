@@ -12,20 +12,33 @@ namespace NotesApp.Services
     static class NoteStoreService
     {
 
-        readonly static string storeDirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NoteStorage", "_db.db");
+        readonly static string storeDirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NoteStorage");
+        readonly static string storeFilePath = Path.Combine(storeDirPath, "_db.db");
 
         static SQLiteAsyncConnection _db;
         
+        private static void dirCheck()
+        {
+            if (Directory.Exists(storeDirPath))
+            {
+                return;
+            }
+
+            Directory.CreateDirectory(storeDirPath);
+
+            return;
+
+        }
+
          public static async Task Init()
         {
-            if (_db == null)
-            {
-                _db = new SQLiteAsyncConnection(storeDirPath);
+            dirCheck();
 
-                await _db.CreateTableAsync<Note>();
+            _db = new SQLiteAsyncConnection(storeFilePath);
 
-                Console.Write("Table Created!");
-            }
+            await _db.CreateTableAsync<Note>();
+
+            Console.Write("Table Created!");
 
             return;
         }
@@ -68,21 +81,12 @@ namespace NotesApp.Services
         public static async Task<IEnumerable<Note>> GetNotes()
         {
             await Init();
+
             var notes = await _db.Table<Note>().ToListAsync();
+
             return notes;
 
         }
-
-        /*public static void CreateNoteFile(this string filePath, string noteText)
-        {
-            if (Directory.Exists(storeDirPath))
-            {
-                File.WriteAllText(filePath, noteText);
-            }
-            Directory.CreateDirectory(storeDirPath);
-            File.WriteAllText(filePath, noteText);
-        }*/
-
 
     }
 }

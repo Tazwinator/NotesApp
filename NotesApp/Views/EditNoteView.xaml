@@ -8,18 +8,34 @@
         <viewmodels:EditNoteViewModel/>
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <Button Command="{x:Binding BackBtn}"
+        <Button Command="{x:Binding BackBtn}" Grid.Row="0" Grid.Column="0"
                     Text="Back"/>
-            <Button Command="{x:Binding SaveNote}"
-                    Text="Save"/>
-            <Button Command="{x:Binding DelNote}"
-                    Text="Delete"/>
-            <Entry Text="{x:Binding CurrentNote.Title}"/>
-            <Editor Text="{x:Binding CurrentNote.Content}"/>
 
-        </StackLayout>
-    </ScrollView>
+        <Button Command="{x:Binding DelNote}" Grid.Row="0" Grid.Column="3"
+                    Text="Delete"/>
+
+        <Button Command="{x:Binding SaveNote}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                    Text="Save"/>
+
+        <Entry Text="{x:Binding CurrentNote.Title}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" />
+
+        <ScrollView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
+            <Editor Text="{x:Binding CurrentNote.Content}"/>
+        </ScrollView>
+    </Grid>
+
 </ContentPage>
